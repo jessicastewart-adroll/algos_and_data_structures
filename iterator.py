@@ -1,7 +1,6 @@
 '''
 Implement Iterator class with next and hasNext which run O(1) time.
 '''
-
 from collections import deque
 
 class Iterator(object):
