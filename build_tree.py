@@ -8,27 +8,27 @@ class Node:
 def get_children_nodes(node):
     return node.children
 
-animals = Node(1, "Animals")
-dogs = Node(2, "Dogs")
-cats = Node(3, "Cats")
-beagles = Node(4, "Beagles")
-bulldogs = Node(5, "Bulldogs")
+japan = Node(1, "japan")
+osaka = Node(2, "osaka")
+tokyo = Node(3, "tokyo")
+ginza = Node(4, "ginza")
+shibuya = Node(5, "shibuya")
 
-dogs.children = [beagles, bulldogs]
-animals.children = [dogs, cats]
+tokyo.children = [ginza, shibuya]
+japan.children = [osaka, tokyo]
 
 '''
 # Function is provided
 # return list of 0 to N Node(s) objects
-get_children_nodes(<ObjectId>)
+get_children_nodes(node)
 
 #Example
-                 (1,"Animals")
-        (2,"Dog")           (3,"Cat")
-(4,"Beagle")   (5,"Bulldog")
+                 (1,"Japan")
+        (2,"Osaka")           (3,"Tokyo")
+(4,"Ginza")   (5,"Shibuya")
 
-get_children_nodes(1) -> [Node(2,"Dog"),Node(3,"Cat")]
-get_children_nodes(3) -> []
+get_children_nodes(japan) -> [Node(2,"osaka"),Node(3,"tokyo")]
+get_children_nodes(tokyo) -> []
 
 # Desired Output for "build_tree"
 tree = {
