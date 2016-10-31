@@ -77,4 +77,4 @@ def build_tree(node):
 
         return tree
 
-print(build_tree(animals))
+print(build_tree(japan))
