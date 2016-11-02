@@ -1,8 +1,9 @@
 '''Convert a sorted array into a binary tree, and then parallelize the algorithm.'''
 class Node(object):
-    def __init__(self, data):
-        self.data = data
-        self.next_node = None
+    def __init__(self, key):
+        self.left = left
+        self.right = right
+        self.data = key
         
     def __repr__(self):
         return 'Node {}'.format(self.data)
@@ -11,13 +12,19 @@ class BinaryTree(object):
     def __init__(self, root):
         self.root = root
         
-    def add_node(self, next_value):
-        leaf = self.root
+    def add_node(self, node):
+        found = False
         
-        while leaf.next_node:
-            leaf = leaf.next_node
-            
-        leaf.next_node = Node(next_value)
+        current_node = self.root
+        
+        while not found:
+            if not current_node:
+                current_node = node
+                found = True
+            elif node.data > current_node.data:
+                current_node = current_node.right
+            elif node.data < current_node.data:
+                current_node.left
         
     def output(self):
         leaf = self.root
