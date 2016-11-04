@@ -4,7 +4,7 @@ def ransom_note(magazine, rasom):
     '''input: 6 4
               give me one grand today night
               give one grand today
-    output: Yes
+       output: Yes
     '''
     hashtable = defaultdict(int)
     for word in magazine:
