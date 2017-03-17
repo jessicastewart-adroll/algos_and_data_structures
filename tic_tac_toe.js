@@ -1,23 +1,4 @@
-var readline = require('readline');
-
-var players = {
-  playerOne: ['x', 'x', 'x', 'x', 'x'],
-  playerTwo: ['o', 'o', 'o', 'o']
-};
-var board = [ [null, null, null],
-              [null, null, null],
-              [null, null, null],
-            ];
-
-//var rl = readline.createInterface(process.stdin, process.stdout);
-var currentPlayer = Object.keys(players)[0];
-
-function printBoard(board) {
-  for (var i = 0; i < board.length; i++) {
-    console.log(board[i]);
-  }
-}
-
+/////////////////brute-force////////////////////////
 function compute_winner(board) {
   // horizontals
   for (var row = 0; row < board.length; row++) {
@@ -27,8 +8,7 @@ function compute_winner(board) {
         win += 1;
       }
     }
-    console.log(row, column, win)
-    if (win == board.length-1) {
+    if (win == board.length) {
       return true;
     }
   }
@@ -41,7 +21,7 @@ function compute_winner(board) {
         win += 1;
       }
     }
-    if (win == board.length-1) {
+    if (win == board.length) {
       return true;
     }
   }
@@ -53,7 +33,7 @@ function compute_winner(board) {
         win += 1;
     }
   }
-  if (win == board.length-1) {
+  if (win == board.length) {
     return true;
   }
 
@@ -65,7 +45,7 @@ function compute_winner(board) {
       win += 1;
     }
   }
-  if (win == board.length-1) {
+  if (win == board.length) {
     return true;
   }
 
@@ -96,36 +76,33 @@ var test_backward_diagonal = [
                    ['x', 21, 22],
                 ];
 
+var test_broken_one = [ 
+                   [00, 01, 'x'],
+                   [10, 'x', 12],
+                   [20, 'x', 22],
+                ];
+
+var test_broken_two = [ 
+                   [00, 01, 'x'],
+                   [10, 'x', 'x'],
+                   [20, 21, 22],
+                ];
+
+var test_broken_three = [ 
+                   [00, 01, 'x'],
+                   [10, 'x', 12],
+                   [20, 21, 'x'],
+                ];           
+
 console.log(compute_winner(test_horizontal));  
-// console.log(compute_winner(test_veritcal));  
-// console.log(compute_winner(test_forward_diagonal));  
-// console.log(compute_winner(test_backward_diagonal));           
+console.log(compute_winner(test_veritcal));  
+console.log(compute_winner(test_forward_diagonal));  
+console.log(compute_winner(test_backward_diagonal));   
+console.log(compute_winner(test_broken_one));   
+console.log(compute_winner(test_broken_two));   
+console.log(compute_winner(test_broken_three)); 
 
-// rl.setPrompt(currentPlayer + ' ');
-// printBoard(board);
-// rl.prompt();
-// rl.on('line', function(line) {
-//     var x = line.split(' ')[0].toString();
-//     var y = line.split(' ')[1].toString();
-
-//     if (!board[x][y] ) {
-//       board[x][y] = players[currentPlayer].pop()
-//       currentPlayer = currentPlayer == 'playerOne' ? Object.keys(players)[1] : Object.keys(players)[0] 
-//     }
-    
-//     rl.setPrompt(currentPlayer + ' ');
-
-//     if (!players.playerOne.length && !players.playerTwo.length) {
-//       printBoard(board);
-//       rl.close();
-//     } else {
-//       printBoard(board);
-//       rl.prompt();
-//     }
-// }).on('close',function(){
-//     process.exit(0);
-// });
-/////////////////////////////////////////
+/////////////////set-up////////////////////////
 var readline = require('readline');
 
 var players = {
