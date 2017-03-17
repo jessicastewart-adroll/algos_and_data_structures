@@ -1,3 +1,84 @@
+///////////////// dfs ////////////////////////
+// misses backwards diagonal
+function compute_winner(board, player) {
+  for (var row = 0; row < board.length; row++) {
+    for (var column = 0; column < board[0].length; column++) {
+      var value = search(board, player, row, column)
+      if (value == board.length) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+function search(board, player, row, column) {
+  if (row < 0 || column < 0 || row >= board.length || column >= board.length) {
+    return 0;
+  }
+
+  if (board[row][column] != player) {
+    return 0;
+  }
+
+  var count = 1
+  count += search(board, player, row+1, column);
+  count += search(board, player, row, column+1);
+  count += search(board, player, row+1, column+1);
+
+  return count;
+}
+
+var test_horizontal = [ 
+                   [00, 01, 02],
+                   ['x', 'x', 'x'],
+                   [20, 21, 22],
+                ];
+
+var test_veritcal = [ 
+                   [00, 'x', 02],
+                   [10, 'x', 12],
+                   [20, 'x', 22],
+                ];
+
+var test_forward_diagonal = [ 
+                   ['x', 01, 02],
+                   [10, 'x', 12],
+                   [20, 21, 'x'],
+                ];
+
+var test_backward_diagonal = [ 
+                   [00, 01, 'x'],
+                   [10, 'x', 12],
+                   ['x', 21, 22],
+                ];
+
+var test_broken_one = [ 
+                   [00, 01, 'x'],
+                   [10, 'x', 12],
+                   [20, 'x', 22],
+                ];
+
+var test_broken_two = [ 
+                   [00, 01, 'x'],
+                   [10, 'x', 'x'],
+                   [20, 21, 22],
+                ];
+
+var test_broken_three = [ 
+                   [00, 01, 'x'],
+                   [10, 'x', 12],
+                   [20, 21, 'x'],
+                ];           
+
+// console.log(compute_winner(test_horizontal, 'x'));  
+// console.log(compute_winner(test_veritcal, 'x')); 
+// console.log(compute_winner(test_forward_diagonal, 'x'));
+console.log(compute_winner(test_backward_diagonal, 'x'));   
+// console.log(compute_winner(test_broken_one, 'x'));
+// console.log(compute_winner(test_broken_two, 'x')); 
+// console.log(compute_winner(test_broken_three, 'x')); 
+
 ///////////////// prevent repetition -> n^3 ////////////////////////
 function compute_winner(board, player) {
   // strights
