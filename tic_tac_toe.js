@@ -1,3 +1,91 @@
+///////////////// prevent repetition -> n^3 ////////////////////////
+function compute_winner(board, player) {
+  // strights
+  for (var row = 0; row < board.length; row++) {
+    var horizontal = 0
+    var vertical = 0
+    for (var column = 0; column < board[0].length; column++) {
+      if (board[row][column] == player) {
+        horizontal += 1;
+      }
+      if (board[column][row] == player) {
+        vertical += 1;
+      }
+    }
+    if (horizontal == board.length || vertical == board.length) {
+      return true;
+    }
+  }
+
+  // diagonals
+  var forward_diagonal = 0;
+  var reverse_diagonal = 0;
+  for (var row = 0; row < board.length; row++) {
+    var column = (board.length-1) - row;
+    if (board[row][row] == player) {
+      forward_diagonal += 1;
+    }
+    if (board[row][column] == player) {
+      reverse_diagonal += 1;
+    }
+  }
+  if (forward_diagonal == board.length || reverse_diagonal == board.length) {
+    return true;
+  }
+
+  return false;
+}
+
+var test_horizontal = [ 
+                   [00, 01, 02],
+                   ['x', 'x', 'x'],
+                   [20, 21, 22],
+                ];
+
+var test_veritcal = [ 
+                   [00, 'x', 02],
+                   [10, 'x', 12],
+                   [20, 'x', 22],
+                ];
+
+var test_forward_diagonal = [ 
+                   ['x', 01, 02],
+                   [10, 'x', 12],
+                   [20, 21, 'x'],
+                ];
+
+var test_backward_diagonal = [ 
+                   [00, 01, 'x'],
+                   [10, 'x', 12],
+                   ['x', 21, 22],
+                ];
+
+var test_broken_one = [ 
+                   [00, 01, 'x'],
+                   [10, 'x', 12],
+                   [20, 'x', 22],
+                ];
+
+var test_broken_two = [ 
+                   [00, 01, 'x'],
+                   [10, 'x', 'x'],
+                   [20, 21, 22],
+                ];
+
+var test_broken_three = [ 
+                   [00, 01, 'x'],
+                   [10, 'x', 12],
+                   [20, 21, 'x'],
+                ];           
+
+console.log(compute_winner(test_horizontal, 'x'));  
+console.log(compute_winner(test_veritcal, 'x')); 
+console.log(compute_winner(test_forward_diagonal, 'x'));
+console.log(compute_winner(test_backward_diagonal, 'x'));   
+console.log(compute_winner(test_broken_one, 'x'));
+console.log(compute_winner(test_broken_two, 'x')); 
+console.log(compute_winner(test_broken_three, 'x')); 
+
 ///////////////// brute-force -> n^6 ////////////////////////
 function compute_winner(board) {
   // horizontals
