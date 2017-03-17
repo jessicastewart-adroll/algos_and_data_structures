@@ -1,4 +1,4 @@
-/////////////////brute-force////////////////////////
+///////////////// brute-force -> n^6 ////////////////////////
 function compute_winner(board) {
   // horizontals
   for (var row = 0; row < board.length; row++) {
@@ -102,7 +102,7 @@ console.log(compute_winner(test_broken_one));
 console.log(compute_winner(test_broken_two));   
 console.log(compute_winner(test_broken_three)); 
 
-/////////////////set-up////////////////////////
+///////////////// set-up ////////////////////////
 var readline = require('readline');
 
 var players = {
