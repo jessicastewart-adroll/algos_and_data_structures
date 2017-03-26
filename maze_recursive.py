@@ -1,6 +1,4 @@
 '''
-1. handle initial case
-2. handle no solution
 square maze
 start in upper left
 end in lower right
@@ -30,21 +28,40 @@ def solve_maze(maze, x, y, solution):
 
 	return False
 
-maze = [
+def handle_maze(maze):
+	size = len(maze)
+	solution = [[0]*(size) for i in range(size)]
+	if can_move(maze, 0, 0):
+		solution[0][0] = 1
+	else:
+		return False	
+	solution = solve_maze(maze, 0, 0, solution)
+
+	if solution:
+		for row in solution:
+			print(row)
+	else:
+		print('No solution')		
+
+path_maze = [
 [1, 0, 0, 0],
 [1, 1, 0, 1],
 [0, 1, 0, 0],
 [1, 1, 1, 1],
 ]
-size = len(maze)
-solution = [[0]*(size) for i in range(size)]
-solution = solve_maze(maze, 0, 0, solution)
-
-for row in solution:
-	print(row)
+no_math_maze = [
+[1, 0, 0, 0],
+[1, 0, 0, 1],
+[0, 1, 0, 0],
+[1, 1, 1, 1],
+]
 # solution = [
 # [1, 0, 0, 0],
 # [1, 1, 0, 0],
 # [0, 1, 0, 0],
 # [0, 1, 1, 1],
 # ]
+
+tests = [path_maze, no_math_maze]
+for test in tests:
+	handle_maze(test)
