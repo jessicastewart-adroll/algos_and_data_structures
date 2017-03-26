@@ -1,30 +1,27 @@
-def square_forward(matrix):
-	size = len(matrix)
-	if size != len(matrix[0]): 
-		print("Input square")
-		return
+def square_backward(matrix):
+	size = len(matrix[0])
 
-	y = 0
-	while y < size:
-		x = 0
-		to_print = []
-		while x <= y:
-			to_print.append(str(matrix[y-x][x]))	
-			x += 1
-		print(' '.join(to_print))
-		y += 1
-
-	x = 1
+	x = 0
 	while x < size:
-		y = size-1
-		to_print = []
-		j = 1
-		while x*j < size:
-			to_print.append(str(matrix[y][x*j]))	
-			y -= 1
-			j += 1
-		print(' '.join(to_print))
-		x += 1	
+		y = 0
+		diagonal = []
+		while y <= x:
+			diagonal.append(str(matrix[y][x-y]))
+			y+=1
+		print(' '.join(diagonal))
+		x+=1
+
+	y = 1
+	while y < size:
+		x = size-1
+		diagonal = []
+		col_count = 1
+		while y*col_count < size:
+			diagonal.append(str(matrix[y*col_count][x]))
+			x-=1
+			col_count += 1
+		print(' '.join(diagonal))
+		y+=1	
 
 
 test0 = [[]]
@@ -39,4 +36,5 @@ test3 = [
 
 tests = [test0, test1, test2, test3]
 for test in tests:
-	square_forward(test)
+	square_backward(test)
+	print('\n')
