@@ -1,3 +1,27 @@
+graph = {'A': set(['B', 'C']),
+         'B': set(['A', 'D', 'E']),
+         'C': set(['A', 'F']),
+         'D': set(['B']),
+         'E': set(['B', 'F']),
+         'F': set(['C', 'E'])}
+         
+def dfs_all_paths(graph, start, end):
+  stack = [(start, [start])]
+  paths = []
+  
+  while stack:
+    node, path = stack.pop()
+    for adj in graph[node]:
+      if adj not in path:
+        if adj == end:
+          paths.append(path+[adj])
+        else:
+          stack.append((adj, path+[adj]))
+        
+  return paths      
+  
+print(dfs_all_paths(graph, 'A', 'F'))
+###
 graph = {
 			'A': set(['B', 'C']),
 			'B': set(['A', 'D', 'E']),
