@@ -1,3 +1,29 @@
+from collections import defaultdict 
+
+def is_anagram_count(string1, string2):
+	count = defaultdict(lambda: 0)
+	if len(string1) != len(string2):
+		return False
+
+	for i in range(0, len(string1)):
+		count[string1[i]] += 1
+		count[string2[i]] -= 1
+
+	for k, v in count.items():
+		if count[k]:
+			return False
+
+	return True			
+
+
+print(is_anagram_count('hello', 'world')) # False	
+print(is_anagram_count('abba', 'baab'))	# True
+print(is_anagram_count('a', 'a')) # True	
+print(is_anagram_count('a', 'ab')) # False	
+print(is_anagram_count('hannah', 'hannah')) # True	
+print(is_anagram_count('racecar', 'racecar')) # True	
+
+###
 def partition(array, start, end):
 	pivot = end
 
